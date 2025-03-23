@@ -2,6 +2,9 @@
 
 .dashboard{
     overflow-y: auto;
+    &::-webkit-scrollbar{
+        display : none;
+    }
 
     .bar{
         height: 4rem;
@@ -59,15 +62,119 @@
                     @include mixin.square(4rem);
                     background-color: white;
                     border-radius: 100%;
-
-                    >span{
-                        position: relative;
-                        
-                    }
+                }
+                >span{
+                    position: relative;
                 }
             }
         
         }
         
+    }
+    > .graphContainer{
+        @include mixin.flex(row,unset,unset,1rem);
+        padding: 0 2rem 2rem 0;
+        width: 100%;
+
+        >.revenueChart{
+            width: 67rem;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.132);
+            border-radius: 10px;
+            padding: 1rem 3rem;
+
+            >h2{
+                @include mixin.header;
+                text-align: center;
+                margin: 1rem 0 2rem 0.25rem;
+            }
+        }
+        >.inventory{
+            width: 16rem;
+            max-width: 16rem;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.132);
+            border-radius: 10px;
+            padding-bottom: 2rem;
+            @include mixin.flex(column,center,unset,0);
+
+            >h2{
+                @include mixin.header;
+                text-align: center;
+                margin: 1.5rem 0 2rem 0rem;
+            }
+            >div{
+                overflow-y: auto;
+                padding: 0.5rem;
+            }
+            > .category-item {
+                width: 100%;
+                @include mixin.flex(row,space-between);
+                padding: 1rem;
+
+                >h5{
+                    letter-spacing: 1px;
+                    font-weight: 300;
+                }
+
+                >div{
+                    height: 0.5rem;
+                    width: 6rem;
+                    background-color: rgb(217,217,217);
+                    border-radius: 20px;
+                    flex: none;
+                    margin-left: auto;
+
+                    >div{
+                        height: 100%;
+                        border-radius: 20px;
+                    }
+                }
+                >span {
+                    font-size: 0.8rem;
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+    >.transaction-container{
+        display: flex;
+        gap: 2rem;
+        padding: 0 2rem 2rem 0;
+        height: 30rem;
+
+        >div{
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.132);
+        }
+        >.gender-chart{
+            width: 100%;
+            max-width: 20rem;
+            padding: 1rem;
+            position: relative;
+
+            >h2{
+                @include mixin.header;
+                text-align: center;
+                margin: 1.5rem 0 1.5rem 0;
+            }
+
+            >p{
+                @include mixin.posCenter;
+                font-size: 2rem;
+                color: rgba(0,0,0,0.634);
+            }
+        }
+        
+        .transaction-box {
+            width: 51.2rem;
+            padding: 1rem;
+            overflow-x: auto;
+            > h2 {
+              margin: 1.5rem 0 0 0;
+              @include mixin.header;
+            }
+        }
     }
 }

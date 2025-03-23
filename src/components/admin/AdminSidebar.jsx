@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { RiAdminFill } from "react-icons/ri";
 import { MdDashboard } from "react-icons/md";
 import { RiShoppingBag3Fill } from "react-icons/ri";
@@ -11,12 +11,48 @@ import { FaChartLine } from "react-icons/fa";
 import { FaGamepad } from "react-icons/fa";
 import { RiCoupon3Fill } from "react-icons/ri";
 import { FaStopwatch } from "react-icons/fa";
+import { HiMenuAlt4 } from "react-icons/hi";
 
 const AdminSidebar = () => {
 
     const location = useLocation();
+
+    const [showModal, setShowModal] = useState(false);
+    const [phoneActive, setPhoneActive] = useState(
+      window.innerWidth < 1100
+    );
+  
+    const resizeHandler = () => {
+      setPhoneActive(window.innerWidth < 1100);
+    };
+  
+    useEffect(() => {
+      window.addEventListener("resize", resizeHandler);
+  
+      return () => {
+        window.removeEventListener("resize", resizeHandler);
+      };
+    }, []);
   return (
-    <aside>
+
+    <>
+    {phoneActive && (
+      <button id="hamburger" onClick={() => setShowModal(true)}>
+        <HiMenuAlt4 />
+      </button>
+    )}
+    <aside  style={
+        phoneActive
+          ? {
+              width: "20rem",
+              height: "100vh",
+              position: "fixed",
+              top: 0,
+              left: showModal ? "0" : "-20rem",
+              transition: "all 0.5s",
+            }
+          : {}
+      }>
       <h2> <RiAdminFill /> Admin</h2>
       <div>
         <h5>DASHBOARD</h5>
@@ -93,7 +129,13 @@ const AdminSidebar = () => {
             </li>
         </ul>
       </div>
+      {phoneActive && (
+          <button id="close-sidebar" onClick={() => setShowModal(false)}>
+            Close
+          </button>
+        )}
     </aside>
+    </>
   )
 }
 
