@@ -21,7 +21,7 @@ import './styles/app.scss';
 const App = () => {
   return (
     <div>
-      <BrowserRouter>
+      <BrowserRouter basename="/admin/dashboard">
       <Suspense fallback={<Loader/>}>
       <Routes>
         <Route path='/admin/dashboard' element={<Dashboard/>}/>
