@@ -17,6 +17,7 @@ const Coupon = lazy(()=> import("./pages/apps/Coupon"));
 const Toss = lazy(()=> import("./pages/apps/Toss"));
 import Loader from "./components/admin/Loader";
 import './styles/app.scss';
+import Home from './pages/admin/Home';
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
       <BrowserRouter>
       <Suspense fallback={<Loader/>}>
       <Routes>
+        <Route path='/' element={<Home/>}/>
         <Route path='/admin/dashboard' element={<Dashboard/>}/>
         <Route path='/admin/products' element={<Products/>}/>
         <Route path='/admin/customer' element={<Customer/>}/>
